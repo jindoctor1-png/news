@@ -5,9 +5,6 @@ Polymer 영업부문 뉴스 크롤링 설정
 # ============================================================
 # 🔑 API 키
 # ============================================================
-NAVER_CLIENT_ID = "TpraDVPGcPZtYNBvTnY2"
-NAVER_CLIENT_SECRET = "qbNqlnMDJH"
-OPENAI_KEY = "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"
 
 # ============================================================
 # 🔴 Main Keyword
@@ -231,4 +228,5 @@ SUMMARY_CONFIG = {
 # ============================================================
 EMAIL_CONFIG = {
     "subject_prefix": "[Polymer 뉴스]",
+
 }
