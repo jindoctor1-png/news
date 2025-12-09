@@ -87,6 +87,10 @@ def send_outlook(df, period_label, to_email, cc_email=None):
     try:
         import win32com.client as win32
         import pythoncom
+    except ImportError:
+        return False, "Outlook은 Windows에서만 사용 가능합니다."
+    
+    try:
         pythoncom.CoInitialize()
         
         outlook = win32.Dispatch("outlook.application")
@@ -96,16 +100,15 @@ def send_outlook(df, period_label, to_email, cc_email=None):
         if cc_email:
             mail.CC = cc_email
         
-        mail.Subject = f"{EMAIL_CONFIG['subject_prefix']} {period_label} 주요 동향"
+        mail.Subject = f"[Polymer 뉴스] {period_label} 주요 동향"
         mail.HTMLBody = create_html(df, period_label)
         
         mail.Send()
-        print(f"✅ 이메일 발송 완료: {to_email}")
-        return True
+        
+        return True, "이메일 발송 완료"
         
     except Exception as e:
-        print(f"❌ 이메일 발송 실패: {e}")
-        return False
+        return False, f"발송 실패: {str(e)}"
 
 
 def save_draft(df, period_label, to_email=""):
@@ -184,4 +187,5 @@ def save_excel_report(df, period_label, save_path="./result"):
     wb.save(filepath)
     
     print(f"📊 Excel 저장: {filepath}")
+
     return filepath
