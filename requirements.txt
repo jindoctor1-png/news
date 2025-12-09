@@ -1,0 +1,10 @@
+streamlit
+pandas
+numpy
+requests
+openai
+pywin32
+newspaper3k
+scikit-learn
+openpyxl
+lxml
